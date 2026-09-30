@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laguna Express Cargo - Hatchback Item Delivery</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        accent: {
+                            DEFAULT: '#007AFF',
+                            hover: '#0056b3',
+                            glow: 'rgba(0, 122, 255, 0.25)',
+                            light: '#3395ff'
+                        },
+                        dark: {
+                            bg: '#0a0a0c',
+                            card: '#121216',
+                            input: '#1a1a20',
+                            border: '#262630'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #0a0a0c;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Subtle scrollbar design */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262630;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #007AFF;
+        }
+
+        /* Glassmorphism card effects */
+        .glass-card {
+            background: rgba(18, 18, 22, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-accent {
+            background: rgba(0, 122, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 122, 255, 0.25);
+        }
+
+        /* Custom glow animations */
+        .blue-glow {
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.2);
+        }
+        
+        .blue-glow-hover:hover {
+            box-shadow: 0 0 25px rgba(0, 122, 255, 0.4);
+        }
+
+        /* Input highlight */
+        .input-focus-accent:focus {
+            outline: none;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25);
+        }
+
+        /* Ticket dashed line */
+        .dashed-line {
+            background-image: linear-gradient(to right, #333 50%, rgba(255, 255, 255, 0) 0%);
+            background-position: bottom;
+            background-size: 12px 1px;
+            background-repeat: repeat-x;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12 antialiased selection:bg-accent selection:text-white">
+
+    <div class="max-w-md mx-auto px-4 pt-6 pb-8 min-h-screen flex flex-col justify-between">
+        
+        <!-- Header & Top Navigation -->
+        <div>
+            <!-- Service Header -->
+            <header class="mb-6 text-center pt-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-3">
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                    Laguna Service Area Only
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-white mb-1">
+                    HATCHBACK EXPRESS
+                </h1>
+                <p class="text-xs text-gray-400 font-medium tracking-wide uppercase">
+                    Item & Cargo Transport • COD Available
+                </p>
+            </header>
+
+            <!-- Important Operating Alert Banner -->
+            <div class="glass-card rounded-xl p-3.5 mb-6 text-xs flex items-center justify-between border-l-4 border-l-accent">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-white">Daily Operations</div>
+                        <div class="text-gray-400">6:00 AM – 5:00 PM (Mon-Sun)</div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <span class="text-accent font-bold text-sm">₱8</span><span class="text-gray-400 text-[10px]">/km</span>
+                </div>
+            </div>
+
+            <!-- Why 4-Wheel Hatchback Section (Accordion / Info Cards) -->
+            <section class="mb-6">
+                <div class="flex items-center justify-between mb-3 px-1">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400">Why 4-Wheels Cargo?</h2>
+                    <span class="text-[10px] text-accent font-medium"><i class="fa-solid fa-shield-halved mr-1"></i>Items Only (No Passengers)</span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2">
+                    <!-- Feature 1 -->
+                    <div class="glass-card rounded-xl p-3 text-center flex flex-col items-center justify-center">
+                        <div class="w-9 h-9 rounded-full bg-dark-input text-accent flex items-center justify-center mb-2 text-sm border border-accent/20">
+                            <i class="fa-solid fa-cloud-showers-heavy"></i>
+                        </div>
+                        <span class="text-[11px] font-semibold text-white leading-tight">100% Weatherproof</span>
+                        <span class="text-[9px] text-gray-400 mt-1">Safe from rain & dust</span>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="glass-card rounded-xl p-3 text-center flex flex-col items-center justify-center">
+                        <div class="w-9 h-9 rounded-full bg-dark-input text-accent flex items-center justify-center mb-2 text-sm border border-accent/20">
+                            <i class="fa-solid fa-box-archive"></i>
+                        </div>
+                        <span class="text-[11px] font-semibold text-white leading-tight">Spacious Boot</span>
+                        <span class="text-[9px] text-gray-400 mt-1">Fits bulky packages</span>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="glass-card rounded-xl p-3 text-center flex flex-col items-center justify-center">
+                        <div class="w-9 h-9 rounded-full bg-dark-input text-accent flex items-center justify-center mb-2 text-sm border border-accent/20">
+                            <i class="fa-solid fa-wine-glass"></i>
+                        </div>
+                        <span class="text-[11px] font-semibold text-white leading-tight">Fragile Care</span>
+                        <span class="text-[9px] text-gray-400 mt-1">Zero drop risks</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Booking Form -->
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                
+                <!-- Pickup & Drop-off Card -->
+                <div class="glass-card rounded-2xl p-4 relative space-y-4">
+                    <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1 flex items-center gap-1.5">
+                        <i class="fa-solid fa-route text-accent"></i> Route Details (Laguna Area Only)
+                    </div>
+
+                    <!-- Pickup Address Input -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-1.5">
+                            Pickup Exact Address <span class="text-accent">*</span>
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-accent">
+                                <i class="fa-solid fa-circle-dot text-xs"></i>
+                            </div>
+                            <input 
+                                type="text" 
+                                id="pickupAddress" 
+                                required
+                                placeholder="House/Bldg No., Street, Brgy, City/Town, Laguna" 
+                                class="w-full bg-dark-input border border-dark-border rounded-xl py-3 pl-10 pr-3 text-sm text-white placeholder-gray-500 input-focus-accent transition-all duration-200"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Connecting Line Visual -->
+                    <div class="pl-5 -my-2 flex items-center">
+                        <div class="w-0.5 h-6 bg-gradient-to-b from-accent to-gray-700 ml-[1px]"></div>
+                    </div>
+
+                    <!-- Drop-off Address Input -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-1.5">
+                            Drop-off Exact Address <span class="text-accent">*</span>
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-red-400">
+                                <i class="fa-solid fa-location-dot text-sm"></i>
+                            </div>
+                            <input 
+                                type="text" 
+                                id="dropoffAddress" 
+                                required
+                                placeholder="House/Bldg No., Street, Brgy, City/Town, Laguna" 
+                                class="w-full bg-dark-input border border-dark-border rounded-xl py-3 pl-10 pr-3 text-sm text-white placeholder-gray-500 input-focus-accent transition-all duration-200"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule Selection Card -->
+                <div class="glass-card rounded-2xl p-4 space-y-4">
+                    <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1 flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar-check text-accent"></i> Preferred Schedule
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <!-- Date Input -->
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1.5">
+                                Date <span class="text-accent">*</span>
+                            </label>
+                            <input 
+                                type="date" 
+                                id="pickupDate" 
+                                required
+                                class="w-full bg-dark-input border border-dark-border rounded-xl py-2.5 px-3 text-xs text-white input-focus-accent transition-all duration-200"
+                            >
+                        </div>
+
+                        <!-- Time Input -->
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-1.5">
+                                Time (6am-5pm) <span class="text-accent">*</span>
+                            </label>
+                            <input 
+                                type="time" 
+                                id="pickupTime" 
+                                min="06:00" 
+                                max="17:00"
+                                required
+                                class="w-full bg-dark-input border border-dark-border rounded-xl py-2.5 px-3 text-xs text-white input-focus-accent transition-all duration-200"
+                            >
+                        </div>
+                    </div>
+                    <p id="timeError" class="hidden text-[11px] text-red-400 mt-1 flex items-center gap-1">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Time must be between 06:00 AM and 05:00 PM.
+                    </p>
+                </div>
+
+                <!-- Item & Sender Details -->
+                <div class="glass-card rounded-2xl p-4 space-y-4">
+                    <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1 flex items-center gap-1.5">
+                        <i class="fa-solid fa-box text-accent"></i> Cargo & Contact Details
+                    </div>
+
+                    <!-- Item Description -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-300 mb-1.5">
+                            Item Description & Quantity <span class="text-accent">*</span>
+                        </label>
+                        <textarea 
+                            id="itemDetails" 
+                            rows="2" 
+                            required
+                            placeholder="e.g., 2 Large Boxes of Bakery Goods, 1 Office Chair, Microwave, etc." 
+                            class="w-full bg-dark-input border border-dark-border rounded-xl p-3 text-sm text-white placeholder-gray-500 input-focus-accent transition-all duration-200"
+                        ></textarea>
+                    </div>
+
+                    <!-- Sender Contact Name & Phone -->
+                 
+                    
+                    </div>
+                </div>
+
+                <!-- Payment Badge & Rate Notice -->
+                <div class="glass-card-accent rounded-xl p-3.5 flex items-center justify-between border border-accent/20">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-semibold text-white">Cash on Delivery (COD)</div>
+                            <div class="text-[10px] text-gray-400">Rate: ₱8 per kilometer</div>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-accent bg-accent/10 px-2.5 py-1 rounded-full border border-accent/30">COD ONLY</span>
+                </div>
+
+                <!-- Form Submit Button -->
+                <button 
+                    type="submit" 
+                    class="w-full py-4 px-6 bg-accent hover:bg-accent-hover text-white font-semibold text-sm rounded-xl shadow-lg blue-glow blue-glow-hover transition-all duration-200 flex items-center justify-center gap-2 active:scale-[0.98]"
+                >
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Confirm Delivery Booking
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer Notice -->
+        <footer class="mt-8 text-center text-[11px] text-gray-500 border-t border-dark-border/50 pt-4">
+            <p>Laguna 4-Wheel Hatchback Express Cargo • Item Delivery Only</p>
+        </footer>
+    </div>
+
+    <!-- Dynamic Receipt Modal overlay -->
+    <div id="receiptModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="w-full max-w-md bg-dark-card border border-dark-border rounded-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
+            
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-dark-card via-accent/20 to-dark-card p-4 text-center border-b border-dark-border relative">
+                <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold tracking-wider mb-1">
+                    <i class="fa-solid fa-circle-check text-[10px]"></i> BOOKING GENERATED
+                </div>
+                <h3 class="text-lg font-bold text-white">Delivery Receipt</h3>
+                <p class="text-xs text-gray-400">Reference: <span id="refCode" class="font-mono text-accent font-semibold">#LGN-000000</span></p>
+            </div>
+
+            <!-- Receipt Content Ticket Style -->
+            <div class="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
+                
+                <!-- Action Instruction Banner -->
+                <div class="p-3 bg-accent/10 border border-accent/30 rounded-xl text-center space-y-1">
+                    <p class="text-xs font-bold text-white flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-camera text-accent"></i> Take a Screenshot Now!
+                    </p>
+                    <p class="text-[11px] text-gray-300 leading-snug">
+                        Please take a screenshot of this receipt and send it to my Facebook Messenger to confirm your booking!
+                    </p>
+                </div>
+
+                <!-- Transparency Note -->
+                <div class="p-3 bg-dark-input/80 border border-dark-border rounded-xl text-left flex items-start gap-2.5">
+                    <i class="fa-solid fa-circle-info text-accent text-sm mt-0.5 shrink-0"></i>
+                    <p class="text-[11px] text-gray-300 leading-tight">
+                        <strong class="text-white">Transparency Guarantee:</strong> I will calculate the exact distance using Google Maps (at ₱8/km rate) and send you the itemized total fare breakdown directly on Messenger.
+                    </p>
+                </div>
+
+                <!-- Summary Details Box -->
+                <div class="bg-dark-bg p-4 rounded-xl border border-dark-border text-xs space-y-3 font-sans">
+                    
+                    <!-- Route -->
+                    <div>
+                        <span class="text-gray-500 text-[10px] uppercase tracking-wider block mb-1">Pickup Location</span>
+                        <div id="receiptPickup" class="text-white font-medium pl-2 border-l-2 border-accent text-xs"></div>
+                    </div>
+
+                    <div>
+                        <span class="text-gray-500 text-[10px] uppercase tracking-wider block mb-1">Drop-off Location</span>
+                        <div id="receiptDropoff" class="text-white font-medium pl-2 border-l-2 border-red-400 text-xs"></div>
+                    </div>
+
+                    <div class="dashed-line py-1"></div>
+
+                    <!-- Date & Time -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <span class="text-gray-500 text-[10px] uppercase tracking-wider block">Schedule Date</span>
+                            <span id="receiptDate" class="text-white font-semibold"></span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 text-[10px] uppercase tracking-wider block">Pickup Time</span>
+                            <span id="receiptTime" class="text-white font-semibold"></span>
+                        </div>
+                    </div>
+
+                    <div class="dashed-line py-1"></div>
+
+                    <!-- Cargo Details -->
+                    <div>
+                        <span class="text-gray-500 text-[10px] uppercase tracking-wider block">Item Details</span>
+                        <span id="receiptItem" class="text-white font-medium block"></span>
+                    </div>
+
+                    <!-- Sender Info -->
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <span class="text-gray-500 text-[10px] uppercase tracking-wider block">Sender</span>
+                            <span id="receiptSender" class="text-white font-medium"></span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 text-[10px] uppercase tracking-wider block">Contact</span>
+                            <span id="receiptPhone" class="text-white font-medium"></span>
+                        </div>
+                    </div>
+
+                    <div class="dashed-line py-1"></div>
+
+                    <!-- Fare Rate & Payment -->
+                    <div class="flex items-center justify-between pt-1">
+                        <div>
+                            <span class="text-gray-500 text-[10px] uppercase block">Rate Matrix</span>
+                            <span class="text-xs text-white font-semibold">₱8.00 / kilometer</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-gray-500 text-[10px] uppercase block">Payment Mode</span>
+                            <span class="text-xs font-bold text-emerald-400">Cash On Delivery</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="p-4 bg-dark-bg/60 border-t border-dark-border space-y-2">
+                <!-- Facebook Messenger Button -->
+                <a 
+                    href="https://www.facebook.com/aranetajonnel/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="w-full py-3.5 px-4 bg-accent hover:bg-accent-hover text-white font-bold text-xs rounded-xl shadow-lg blue-glow transition-all duration-200 flex items-center justify-center gap-2 active:scale-[0.98] text-center"
+                >
+                    <i class="fa-brands fa-facebook-messenger text-base"></i>
+                    Send Screenshot via Facebook Messenger
+                </a>
+
+                <!-- Close / Edit Button -->
+                <button 
+                    onclick="closeReceiptModal()" 
+                    class="w-full py-2.5 px-4 bg-dark-input hover:bg-dark-border text-gray-300 font-medium text-xs rounded-xl transition-all duration-200"
+                >
+                    Close & Edit Booking
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Set default minimum date to today
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('pickupDate').min = today;
+            document.getElementById('pickupDate').value = today;
+        });
+
+        // Generate Random Reference Code
+        function generateRefCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = 'LGN-';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Format 24hr time to 12hr AM/PM
+        function formatTime12Hr(time24) {
+            if (!time24) return '';
+            const [hours, minutes] = time24.split(':');
+            let h = parseInt(hours, 10);
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12;
+            h = h ? h : 12; // hour '0' should be '12'
+            return `${h}:${minutes} ${ampm}`;
+        }
+
+        // Handle Booking Form Submission
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+
+            const timeInput = document.getElementById('pickupTime').value;
+            const timeError = document.getElementById('timeError');
+
+            // Validate operational hours (06:00 to 17:00)
+            if (timeInput < "06:00" || timeInput > "17:00") {
+                timeError.classList.remove('hidden');
+                return;
+            } else {
+                timeError.classList.add('hidden');
+            }
+
+            // Extract form values
+            const pickup = document.getElementById('pickupAddress').value;
+            const dropoff = document.getElementById('dropoffAddress').value;
+            const date = document.getElementById('pickupDate').value;
+            const item = document.getElementById('itemDetails').value;
+            const sender = document.getElementById('senderName').value;
+            const phone = document.getElementById('senderPhone').value;
+
+            // Populate Modal Receipt
+            document.getElementById('refCode').innerText = `#${generateRefCode()}`;
+            document.getElementById('receiptPickup').innerText = pickup;
+            document.getElementById('receiptDropoff').innerText = dropoff;
+            document.getElementById('receiptDate').innerText = date;
+            document.getElementById('receiptTime').innerText = formatTime12Hr(timeInput);
+            document.getElementById('receiptItem').innerText = item;
+            document.getElementById('receiptSender').innerText = sender;
+            document.getElementById('receiptPhone').innerText = phone;
+
+            // Show Modal
+            document.getElementById('receiptModal').classList.remove('hidden');
+        }
+
+        // Close Modal
+        function closeReceiptModal() {
+            document.getElementById('receiptModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

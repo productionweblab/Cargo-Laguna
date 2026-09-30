@@ -267,10 +267,10 @@
                     </p>
                 </div>
 
-                <!-- Item & Sender Details -->
+                <!-- Cargo Details -->
                 <div class="glass-card rounded-2xl p-4 space-y-4">
                     <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1 flex items-center gap-1.5">
-                        <i class="fa-solid fa-box text-accent"></i> Cargo & Contact Details
+                        <i class="fa-solid fa-box text-accent"></i> Cargo Details
                     </div>
 
                     <!-- Item Description -->
@@ -285,11 +285,6 @@
                             placeholder="e.g., 2 Large Boxes of Bakery Goods, 1 Office Chair, Microwave, etc." 
                             class="w-full bg-dark-input border border-dark-border rounded-xl p-3 text-sm text-white placeholder-gray-500 input-focus-accent transition-all duration-200"
                         ></textarea>
-                    </div>
-
-                    <!-- Sender Contact Name & Phone -->
-                 
-                    
                     </div>
                 </div>
 
@@ -394,18 +389,6 @@
                         <span id="receiptItem" class="text-white font-medium block"></span>
                     </div>
 
-                    <!-- Sender Info -->
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <span class="text-gray-500 text-[10px] uppercase tracking-wider block">Sender</span>
-                            <span id="receiptSender" class="text-white font-medium"></span>
-                        </div>
-                        <div>
-                            <span class="text-gray-500 text-[10px] uppercase tracking-wider block">Contact</span>
-                            <span id="receiptPhone" class="text-white font-medium"></span>
-                        </div>
-                    </div>
-
                     <div class="dashed-line py-1"></div>
 
                     <!-- Fare Rate & Payment -->
@@ -497,8 +480,6 @@
             const dropoff = document.getElementById('dropoffAddress').value;
             const date = document.getElementById('pickupDate').value;
             const item = document.getElementById('itemDetails').value;
-            const sender = document.getElementById('senderName').value;
-            const phone = document.getElementById('senderPhone').value;
 
             // Populate Modal Receipt
             document.getElementById('refCode').innerText = `#${generateRefCode()}`;
@@ -507,8 +488,6 @@
             document.getElementById('receiptDate').innerText = date;
             document.getElementById('receiptTime').innerText = formatTime12Hr(timeInput);
             document.getElementById('receiptItem').innerText = item;
-            document.getElementById('receiptSender').innerText = sender;
-            document.getElementById('receiptPhone').innerText = phone;
 
             // Show Modal
             document.getElementById('receiptModal').classList.remove('hidden');
